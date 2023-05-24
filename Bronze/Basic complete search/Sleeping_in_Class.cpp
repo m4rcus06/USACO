@@ -31,7 +31,10 @@ void solve() {
 			for (int i = 1, last = 1; i <= n; ) {
 				last = i;
 				i = lower_bound(all(pre), cur) - pre.begin();
-				if (pre[i] == cur) cur += x, cnt += i - last;
+				if (pre[i] == cur) {
+					cur += x;
+					cnt += i - last;
+				}
 				else {
 					flag = false;
 					break;
@@ -39,13 +42,17 @@ void solve() {
 				++i;
 			}
 			if (flag) res = min(res, cnt);
+
 			if (x != sum / x) {
 				int cur = sum / x, cnt = 0;
 				bool flag = true;
 				for (int i = 1, last = 1; i <= n;) {
 					last = i;
 					i = lower_bound(all(pre), cur) - pre.begin();
-					if (pre[i] == cur) cur += sum / x, cnt += i - last;
+					if (pre[i] == cur) {
+						cur += sum / x;
+						cnt += i - last;
+					}
 					else {
 						flag = false;
 						break;
@@ -56,7 +63,8 @@ void solve() {
 			}
 		}
 	}
-	if (sum == 0) res = 0; //edge cases;
+
+	if (sum == 0) res = 0;
 	cout << res << '\n';
 }
 
